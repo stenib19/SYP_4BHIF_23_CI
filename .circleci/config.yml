@@ -17,6 +17,11 @@ jobs:
       - run:
           name: "Say hello"
           command: "echo Hello, World!"
+          
+      - run:
+          name: Check Java Version
+          command: java -version 2>&1 | awk -F '"' '/version/ {print $2}' | awk -F '.' '{if ($1 >= 17) exit 0; else exit 1}'
+
 
 # Orchestrate jobs using workflows
 # See: https://circleci.com/docs/configuration-reference/#workflows
